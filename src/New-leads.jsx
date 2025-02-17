@@ -185,8 +185,7 @@ function NewLeads({ selectedItem }) {
         console.log(leadsDatas);
 
         if (Array.isArray(data.data)) {
-          // Reverse the fetched leads data
-          const reversedLeads = leadsDatas.reverse();
+          const reversedLeads = leadsDatas;
           setLeads(reversedLeads); // Update state with the reversed data
         } else if (
           data &&
@@ -194,7 +193,7 @@ function NewLeads({ selectedItem }) {
           Array.isArray(data.data)
         ) {
           // If the data is wrapped in a response object
-          const reversedLeads = data.data.reverse();
+          const reversedLeads = data.data;
           setLeads(reversedLeads); // Update state with the reversed data
         } else {
           throw new Error("Invalid data format received from the server.");
@@ -307,7 +306,6 @@ function NewLeads({ selectedItem }) {
   };
 
   const handleRowClick = (lead) => {
-    console.log("clicked leads", lead._id);
     setSelectedLead(lead);
     setAssignedUser(lead.assign || "");
     fetchCommentData(lead._id);
